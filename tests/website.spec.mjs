@@ -8,9 +8,11 @@ for (const system of ['light', 'dark']) {
     const toggle = page.getByRole('button', { name: 'Dark mode', exact: true });
     await expect(page.locator('html')).toHaveCSS('color-scheme', system);
     await expect(toggle).toHaveAttribute('aria-pressed', String(system === 'dark'));
+    await expect(page.locator('[data-favicon]')).toHaveAttribute('href', `assets/favicon${system === 'dark' ? '-dark' : ''}-32.png?v=2`);
 
     await page.emulateMedia({ colorScheme: other });
     await expect(page.locator('html')).toHaveCSS('color-scheme', other);
+    await expect(page.locator('[data-favicon]')).toHaveAttribute('href', `assets/favicon${other === 'dark' ? '-dark' : ''}-32.png?v=2`);
     await page.emulateMedia({ colorScheme: system });
     await expect(page.locator('html')).toHaveCSS('color-scheme', system);
 
@@ -24,6 +26,7 @@ for (const system of ['light', 'dark']) {
     await page.emulateMedia({ colorScheme: system });
     await expect(page.locator('html')).toHaveCSS('color-scheme', other);
     await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', other === 'dark' ? '#0d0f12' : '#ffffff');
+    await expect(page.locator('[data-favicon]')).toHaveAttribute('href', `assets/favicon${system === 'dark' ? '-dark' : ''}-32.png?v=2`);
   });
 }
 
@@ -59,7 +62,11 @@ test('approved products, sharing assets and responsive navigation work in both t
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       await expect(page.getByRole('button', { name: 'Dark mode', exact: true })).toBeInViewport();
     }
-    await page.getByRole('link', { name: 'Find a tool', exact: false }).click();
+    await expect(page.locator('.hero').getByRole('link')).toHaveCount(1);
+    await expect(page.locator('.hero').getByRole('link')).toHaveAccessibleName('View on GitHub');
+    await expect(page.locator('.hero').getByRole('link')).toHaveAttribute('href', 'https://github.com/sqlstack-io/sqlstack');
+    await page.getByRole('link', { name: 'Skip to tools', exact: true }).focus();
+    await page.keyboard.press('Enter');
     await expect(page).toHaveURL(/#tools$/);
     await page.keyboard.press('Tab');
     await expect(page.getByRole('link', { name: 'SQLBuild website', exact: true })).toBeFocused();
@@ -75,6 +82,7 @@ test('approved products, sharing assets and responsive navigation work in both t
     ['/assets/og-sqlstack-dark.png', 1200, 630],
     ['/assets/favicon-16.png', 16, 16],
     ['/assets/favicon-32.png', 32, 32],
+    ['/assets/favicon-dark-32.png', 32, 32],
     ['/assets/apple-touch-icon.png', 180, 180],
   ]) {
     const response = await request.get(path);
@@ -90,4 +98,25 @@ test('approved products, sharing assets and responsive navigation work in both t
   expect(ico.readUInt16LE(2)).toBe(1);
   expect(ico.readUInt16LE(4)).toBe(3);
   expect([ico[6], ico[22], ico[38]]).toEqual([16, 32, 48]);
+
+  for (const path of ['/assets/favicon-16.png', '/assets/favicon-32.png', '/assets/favicon-dark-32.png', '/favicon.ico']) {
+    const pixels = await page.evaluate(async (src) => {
+      const image = new Image();
+      image.src = src;
+      await image.decode();
+      const canvas = document.createElement('canvas');
+      canvas.width = image.naturalWidth;
+      canvas.height = image.naturalHeight;
+      const context = canvas.getContext('2d');
+      context.drawImage(image, 0, 0);
+      const data = context.getImageData(0, 0, canvas.width, canvas.height).data;
+      const corners = [0, canvas.width - 1, canvas.width * (canvas.height - 1), canvas.width * canvas.height - 1];
+      return {
+        corners: corners.map((pixel) => data[pixel * 4 + 3]),
+        opaquePixels: Array.from(data).filter((value, index) => index % 4 === 3 && value === 255).length,
+      };
+    }, path);
+    expect(pixels.corners, path).toEqual([0, 0, 0, 0]);
+    expect(pixels.opaquePixels, path).toBeGreaterThan(0);
+  }
 });

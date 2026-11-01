@@ -13,6 +13,8 @@
   function apply(theme) {
     root.dataset.theme = theme;
     document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#0d0f12' : '#ffffff';
+    // Match browser chrome, even when the page theme is explicitly overridden.
+    document.querySelector('[data-favicon]').href = system.matches ? 'assets/favicon-dark-32.png?v=2' : 'assets/favicon-32.png?v=2';
     const toggle = document.querySelector('[data-theme-toggle]');
     if (toggle) {
       toggle.setAttribute('aria-pressed', String(theme === 'dark'));
@@ -23,7 +25,7 @@
   apply(preference || (system.matches ? 'dark' : 'light'));
 
   system.addEventListener('change', () => {
-    if (!preference) apply(system.matches ? 'dark' : 'light');
+    apply(preference || (system.matches ? 'dark' : 'light'));
   });
 
   document.addEventListener('DOMContentLoaded', () => {
