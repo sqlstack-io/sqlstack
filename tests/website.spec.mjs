@@ -51,6 +51,13 @@ test('approved products, sharing assets and responsive navigation work in both t
     await expect(page.getByRole('link', { name: 'SQLStack on GitHub', exact: true })).toHaveAttribute('href', 'https://github.com/sqlstack-io');
     await expect(page.getByText('Compile-time checks, tested behaviour and enforceable architecture.', { exact: true })).toBeVisible();
     await expect(page.locator('footer')).toContainText('Independent tools. Shared foundations. 100% open source.');
+    const sqltideWebsite = page.getByRole('article', { name: 'SQLTide', exact: true }).getByRole('link', { name: 'SQLTide website', exact: true });
+    await expect(sqltideWebsite).toHaveAttribute('href', 'https://sqltide.io/');
+    await expect(sqltideWebsite).toHaveText('Website ↗');
+    const sqlclean = page.getByRole('article', { name: 'SQLClean', exact: true });
+    await expect(sqlclean.locator('p')).toHaveText('SQL linting and formatting. Lint 10,000 files in under a second.');
+    await expect(sqlclean.getByRole('link', { name: 'under a second.', exact: true })).toHaveAttribute('href', 'https://sqlclean.io/docs/benchmarks/');
+    await expect(page.getByText('Published benchmark:', { exact: false })).toHaveCount(0);
     for (const name of names.slice(4)) {
       const card = page.getByRole('article', { name, exact: true });
       await expect(card.getByText('Coming soon', { exact: true })).toBeVisible();
@@ -60,6 +67,7 @@ test('approved products, sharing assets and responsive navigation work in both t
     for (const width of [320, 390, 768, 1536]) {
       await page.setViewportSize({ width, height: 900 });
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      await expect(sqltideWebsite).toBeVisible();
       await expect(page.getByRole('button', { name: 'Dark mode', exact: true })).toBeInViewport();
     }
     await expect(page.locator('.hero').getByRole('link')).toHaveCount(1);

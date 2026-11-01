@@ -106,8 +106,6 @@ h3 { margin: 0; font-family: "Space Grotesk", sans-serif; font-size: 24.94308px;
 .fensu h3 { font-size: 25.5px; }
 .product-content > p { margin: 4px 0 12px; min-height: 42px; font-size: 15px; line-height: 1.4; color: var(--muted); }
 .text-line { display: block; }
-sup { font-size: 11px; line-height: 0; }
-sup a { color: var(--muted); text-decoration: none; padding-inline: 2px; }
 .product-links { display: flex; gap: 28px; margin-top: auto; padding-top: 10px; border-top: 1px solid var(--line); font-size: 14px; line-height: 20px; }
 .product-links a { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
 .product-links a:hover { text-decoration: underline; }
@@ -121,10 +119,9 @@ sup a { color: var(--muted); text-decoration: none; padding-inline: 2px; }
 .upcoming-name { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
 .badge { display: inline-block; padding: 6px 10px; border-radius: 4px; font-size: 12px; line-height: 16px; color: var(--gold-ink); background: var(--gold-bg); white-space: nowrap; }
 .sqlload .badge { color: var(--pink-ink); background: var(--pink-bg); }
-.benchmark { margin: 0 0 12px; color: var(--muted); font-size: 12px; line-height: 1.5; }
 .site-footer { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0 24px; border-top: 1px solid var(--line); font-size: 12px; line-height: 1.5; }
 .site-footer span:last-child { color: var(--muted); }
-#tools, #benchmark { scroll-margin-top: 20px; }
+#tools { scroll-margin-top: 20px; }
 
 @media (max-width: 1200px) {
   .tool-row { grid-template-columns: 250px minmax(0, 1fr); }
@@ -154,6 +151,5 @@ sup a { color: var(--muted); text-decoration: none; padding-inline: 2px; }
   .upcoming .product { min-height: 116px; }
   .upcoming-name { gap: 8px; }
   .badge { padding-inline: 8px; }
-  .benchmark { margin-bottom: 16px; }
   .site-footer { flex-wrap: wrap; }
 }
