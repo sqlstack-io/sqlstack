@@ -43,7 +43,7 @@ test('theme control remains usable when browser storage is blocked', async ({ pa
 });
 
 test('approved products, sharing assets and responsive navigation work in both themes', async ({ page, request }) => {
-  const names = ['SQLBuild', 'SQLTide', 'SQLClean', 'Fensu', 'SQLQuack', 'SQLoad'];
+  const names = ['SQLBuild', 'SQLTide', 'SQLClean', 'Fensu', 'SQLQuack', 'SQLLoad'];
   for (const theme of ['light', 'dark']) {
     await page.emulateMedia({ colorScheme: theme });
     await page.goto('/');

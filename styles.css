@@ -115,12 +115,12 @@ sup a { color: var(--muted); text-decoration: none; padding-inline: 2px; }
 .sqlclean { --accent: #00c995; }
 .fensu { --accent: #ff6b00; }
 .sqlquack { --accent: #ffe000; }
-.sqload { --accent: #ff5268; }
+.sqlload { --accent: #ff5268; }
 .upcoming .product { min-height: 128px; align-items: center; padding-block: 22px; }
 .upcoming .product-icon { margin-top: 0; }
 .upcoming-name { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
 .badge { display: inline-block; padding: 6px 10px; border-radius: 4px; font-size: 12px; line-height: 16px; color: var(--gold-ink); background: var(--gold-bg); white-space: nowrap; }
-.sqload .badge { color: var(--pink-ink); background: var(--pink-bg); }
+.sqlload .badge { color: var(--pink-ink); background: var(--pink-bg); }
 .benchmark { margin: 0 0 12px; color: var(--muted); font-size: 12px; line-height: 1.5; }
 .site-footer { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0 24px; border-top: 1px solid var(--line); font-size: 12px; line-height: 1.5; }
 .site-footer span:last-child { color: var(--muted); }
