@@ -25,9 +25,6 @@
   --focus: #1768ba;
   --button-border: #bdc9da;
   --button-hover: #f3f6fa;
-  --primary: #0866db;
-  --primary-ink: #ffffff;
-  --primary-hover: #0755b7;
   --gold-ink: #765600;
   --gold-bg: #fff3cb;
   --pink-ink: #a52138;
@@ -50,9 +47,6 @@
   --focus: #75b5ff;
   --button-border: #626a76;
   --button-hover: #171a1f;
-  --primary: #3788e8;
-  --primary-ink: #0d0f12;
-  --primary-hover: #66a6f0;
   --gold-ink: #ffe07a;
   --gold-bg: #352b12;
   --pink-ink: #ffacba;
@@ -99,8 +93,6 @@ h1 span { display: block; }
 .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 20px; min-height: 48px; border: 1px solid var(--button-border); border-radius: 2px; color: var(--ink); font-size: 14px; line-height: 20px; text-decoration: none; }
 .button:hover { background: var(--button-hover); text-decoration: none; }
-.button.primary { color: var(--primary-ink); background: var(--primary); border-color: var(--primary); }
-.button.primary:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
 .tool-row { display: grid; grid-template-columns: 304px minmax(0, 1fr); gap: 24px; border-top: 1px solid var(--line); padding: 18px 0 16px; }
 .category { padding-top: 8px; }
 .category .eyebrow { margin: 0 0 8px; color: var(--muted); font-size: 14px; line-height: 20px; text-transform: uppercase; }
