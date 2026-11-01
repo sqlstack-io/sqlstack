@@ -51,6 +51,9 @@ test('approved products, sharing assets and responsive navigation work in both t
     await expect(page.getByRole('link', { name: 'SQLStack on GitHub', exact: true })).toHaveAttribute('href', 'https://github.com/sqlstack-io');
     await expect(page.getByText('Compile-time checks, tested behaviour and enforceable architecture.', { exact: true })).toBeVisible();
     await expect(page.locator('footer')).toContainText('Independent tools. Shared foundations. 100% open source.');
+    const fensuWebsite = page.getByRole('article', { name: 'Fensu', exact: true }).getByRole('link', { name: 'Fensu website', exact: true });
+    await expect(fensuWebsite).toHaveAttribute('href', 'https://fensu.io/');
+    await expect(fensuWebsite).toHaveText('Website ↗');
     const sqltideWebsite = page.getByRole('article', { name: 'SQLTide', exact: true }).getByRole('link', { name: 'SQLTide website', exact: true });
     await expect(sqltideWebsite).toHaveAttribute('href', 'https://sqltide.io/');
     await expect(sqltideWebsite).toHaveText('Website ↗');
