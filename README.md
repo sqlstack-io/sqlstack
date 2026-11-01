@@ -37,8 +37,11 @@ publishing or deployment step.
 
 `favicon.ico` contains 16px, 32px and 48px icons. PNG favicons and a 180px Apple touch icon use the
 original SQLStack mark on white backing for legibility in light and dark browser chrome.
-`assets/og-sqlstack.png` is an opaque 1200 × 630 sharing card using the original SQLStack wordmark
-and the site's Inter typography. These are raster derivatives, not replacement logos or SVG originals.
+`assets/og-sqlstack-dark.png` is an opaque 1200 × 630 sharing card using the original SQLStack
+wordmark and the site's Inter typography on a near-black background. Its branding and text fit
+inside the central 630px square so small thumbnail crops retain the complete message. The previous
+`assets/og-sqlstack.png` remains available for cached metadata. These are raster derivatives, not
+replacement logos or SVG originals.
 
 Canonical and Open Graph/Twitter URLs target `https://sqlstack.io/`. Local previews can verify the
 metadata and assets, but public social-crawler validation requires a separately authorized deployment.

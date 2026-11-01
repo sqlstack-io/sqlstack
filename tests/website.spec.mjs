@@ -69,10 +69,10 @@ test('approved products, sharing assets and responsive navigation work in both t
   await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', 'https://sqlstack.io/');
   await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute('content', 'summary_large_image');
   for (const selector of ['meta[property="og:image"]', 'meta[name="twitter:image"]']) {
-    await expect(page.locator(selector)).toHaveAttribute('content', 'https://sqlstack.io/assets/og-sqlstack.png');
+    await expect(page.locator(selector)).toHaveAttribute('content', 'https://sqlstack.io/assets/og-sqlstack-dark.png');
   }
   for (const [path, width, height] of [
-    ['/assets/og-sqlstack.png', 1200, 630],
+    ['/assets/og-sqlstack-dark.png', 1200, 630],
     ['/assets/favicon-16.png', 16, 16],
     ['/assets/favicon-32.png', 32, 32],
     ['/assets/apple-touch-icon.png', 180, 180],
