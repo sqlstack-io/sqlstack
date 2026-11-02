@@ -56,7 +56,7 @@ test('approved products, sharing assets and responsive navigation work in both t
       await expect(card.getByRole('link', { name: `${name} website`, exact: true })).toHaveAttribute('href', website);
       await expect(card.getByRole('link', { name: `${name} on GitHub`, exact: true })).toHaveAttribute('href', `https://github.com/sqlstack-io/${name.toLowerCase()}`);
     }
-    await expect(page.getByText('Compile-time checks, tested behaviour and enforceable architecture.', { exact: true })).toBeVisible();
+    await expect(page.locator('.hero .principles')).toHaveText('Compile-time checks, built-in testing and enforceable architecture.');
     await expect(page.locator('footer')).toContainText('Independent tools. Shared foundations. 100% open source.');
     const fensuWebsite = page.getByRole('article', { name: 'Fensu', exact: true }).getByRole('link', { name: 'Fensu website', exact: true });
     await expect(fensuWebsite).toHaveAttribute('href', 'https://fensu.io/');
