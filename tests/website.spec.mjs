@@ -47,6 +47,8 @@ test('approved products, sharing assets and responsive navigation work in both t
   for (const theme of ['light', 'dark']) {
     await page.emulateMedia({ colorScheme: theme });
     await page.goto('/');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Your data stack. Engineered for change.');
+    await expect(page.locator('.hero .lede')).toHaveText('Rust-backed SQL and Python tools for data engineers.');
     await expect(page.getByRole('heading', { level: 3 })).toHaveText(names);
     await expect(page.getByRole('link', { name: 'SQLStack on GitHub', exact: true })).toHaveAttribute('href', 'https://github.com/sqlstack-io');
     for (const [name, website] of [['SQLBuild', 'https://sqlbuild.com'], ['SQLTide', 'https://sqltide.io/'], ['SQLClean', 'https://sqlclean.io'], ['Fensu', 'https://fensu.io/']]) {
