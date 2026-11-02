@@ -49,6 +49,11 @@ test('approved products, sharing assets and responsive navigation work in both t
     await page.goto('/');
     await expect(page.getByRole('heading', { level: 3 })).toHaveText(names);
     await expect(page.getByRole('link', { name: 'SQLStack on GitHub', exact: true })).toHaveAttribute('href', 'https://github.com/sqlstack-io');
+    for (const [name, website] of [['SQLBuild', 'https://sqlbuild.com'], ['SQLTide', 'https://sqltide.io/'], ['SQLClean', 'https://sqlclean.io'], ['Fensu', 'https://fensu.io/']]) {
+      const card = page.getByRole('article', { name, exact: true });
+      await expect(card.getByRole('link', { name: `${name} website`, exact: true })).toHaveAttribute('href', website);
+      await expect(card.getByRole('link', { name: `${name} on GitHub`, exact: true })).toHaveAttribute('href', `https://github.com/sqlstack-io/${name.toLowerCase()}`);
+    }
     await expect(page.getByText('Compile-time checks, tested behaviour and enforceable architecture.', { exact: true })).toBeVisible();
     await expect(page.locator('footer')).toContainText('Independent tools. Shared foundations. 100% open source.');
     const fensuWebsite = page.getByRole('article', { name: 'Fensu', exact: true }).getByRole('link', { name: 'Fensu website', exact: true });
@@ -73,9 +78,8 @@ test('approved products, sharing assets and responsive navigation work in both t
       await expect(sqltideWebsite).toBeVisible();
       await expect(page.getByRole('button', { name: 'Dark mode', exact: true })).toBeInViewport();
     }
-    await expect(page.locator('.hero').getByRole('link')).toHaveCount(1);
-    await expect(page.locator('.hero').getByRole('link')).toHaveAccessibleName('View on GitHub');
-    await expect(page.locator('.hero').getByRole('link')).toHaveAttribute('href', 'https://github.com/sqlstack-io/sqlstack');
+    await expect(page.locator('.hero').getByRole('link')).toHaveCount(0);
+    await expect(page.getByRole('link', { name: 'View on GitHub', exact: true })).toHaveCount(0);
     await page.getByRole('link', { name: 'Skip to tools', exact: true }).focus();
     await page.keyboard.press('Enter');
     await expect(page).toHaveURL(/#tools$/);
