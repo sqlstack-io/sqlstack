@@ -23,8 +23,6 @@
   --background: #ffffff;
   --panel: #ffffff;
   --focus: #1768ba;
-  --button-border: #bdc9da;
-  --button-hover: #f3f6fa;
   --gold-ink: #765600;
   --gold-bg: #fff3cb;
   --pink-ink: #a52138;
@@ -45,8 +43,6 @@
   --background: #0d0f12;
   --panel: #171a1f;
   --focus: #75b5ff;
-  --button-border: #626a76;
-  --button-hover: #171a1f;
   --gold-ink: #ffe07a;
   --gold-bg: #352b12;
   --pink-ink: #ffacba;
@@ -90,9 +86,6 @@ h1 { margin: 0; font-size: clamp(40px, 4.2vw, 64px); line-height: 1; letter-spac
 h1 span { display: block; }
 .lede { margin: 20px 0 3px; font-size: 22px; line-height: 1.4; }
 .principles { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.5; }
-.hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-.button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 20px; min-height: 48px; border: 1px solid var(--button-border); border-radius: 2px; color: var(--ink); font-size: 14px; line-height: 20px; text-decoration: none; }
-.button:hover { background: var(--button-hover); text-decoration: none; }
 .tool-row { display: grid; grid-template-columns: 304px minmax(0, 1fr); gap: 24px; border-top: 1px solid var(--line); padding: 18px 0 16px; }
 .category { padding-top: 8px; }
 .category .eyebrow { margin: 0 0 8px; color: var(--muted); font-size: 14px; line-height: 20px; text-transform: uppercase; }
@@ -142,8 +135,6 @@ h3 { margin: 0; font-family: "Space Grotesk", sans-serif; font-size: 24.94308px;
   h1 { font-size: clamp(34px, 8.5vw, 48px); line-height: 1.07; letter-spacing: -.05em; }
   .lede { margin-top: 20px; font-size: 18px; }
   .principles { margin-top: 10px; font-size: 15px; }
-  .hero-actions { gap: 10px; }
-  .button { padding-inline: 16px; }
   .cards { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .category > p:last-child { margin-top: 8px; }
   .product { gap: 20px; padding: 22px 18px 18px; }
