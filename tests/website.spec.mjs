@@ -50,6 +50,10 @@ test('approved products, sharing assets and responsive navigation work in both t
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Your data stack. Engineered for safer change.');
     await expect(page.locator('.hero .lede')).toHaveText('Rust-backed SQL and Python tools for data engineers.');
     await expect(page.getByRole('heading', { level: 3 })).toHaveText(names);
+    const wordmark = page.locator('.brand span');
+    for (const [property, value] of [['font-family', '"Space Grotesk", sans-serif'], ['font-weight', '700'], ['letter-spacing', 'normal'], ['font-size', '22px']]) {
+      await expect(wordmark).toHaveCSS(property, value);
+    }
     await expect(page.getByRole('link', { name: 'SQLStack on GitHub', exact: true })).toHaveAttribute('href', 'https://github.com/sqlstack-io');
     for (const [name, website] of [['SQLBuild', 'https://sqlbuild.com'], ['SQLTide', 'https://sqltide.io/'], ['SQLClean', 'https://sqlclean.io'], ['Fensu', 'https://fensu.io/']]) {
       const card = page.getByRole('article', { name, exact: true });
