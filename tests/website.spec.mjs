@@ -43,7 +43,7 @@ test('theme control remains usable when browser storage is blocked', async ({ pa
 });
 
 test('approved products, sharing assets and responsive navigation work in both themes', async ({ page, request }) => {
-  const names = ['SQLBuild', 'SQLTide', 'SQLClean', 'Fensu', 'SQLQuack', 'SQLLoad'];
+  const names = ['SQLBuild', 'SQLTide', 'SQLLoad', 'SQLClean', 'Fensu', 'SQLQuack'];
   for (const theme of ['light', 'dark']) {
     await page.emulateMedia({ colorScheme: theme });
     await page.goto('/');
@@ -55,7 +55,7 @@ test('approved products, sharing assets and responsive navigation work in both t
       await expect(wordmark).toHaveCSS(property, value);
     }
     await expect(page.getByRole('link', { name: 'SQLStack on GitHub', exact: true })).toHaveAttribute('href', 'https://github.com/sqlstack-io');
-    for (const [name, website] of [['SQLBuild', 'https://sqlbuild.com'], ['SQLTide', 'https://sqltide.io/'], ['SQLClean', 'https://sqlclean.io'], ['Fensu', 'https://fensu.io/']]) {
+    for (const [name, website] of [['SQLBuild', 'https://sqlbuild.com'], ['SQLTide', 'https://sqltide.io/'], ['SQLClean', 'https://sqlclean.io'], ['Fensu', 'https://fensu.io/'], ['SQLLoad', 'https://sqlload.io'], ['SQLQuack', 'https://sqlquack.io']]) {
       const card = page.getByRole('article', { name, exact: true });
       await expect(card.getByRole('link', { name: `${name} website`, exact: true })).toHaveAttribute('href', website);
       await expect(card.getByRole('link', { name: `${name} on GitHub`, exact: true })).toHaveAttribute('href', `https://github.com/sqlstack-io/${name.toLowerCase()}`);
@@ -72,11 +72,13 @@ test('approved products, sharing assets and responsive navigation work in both t
     await expect(sqlclean.locator('p')).toHaveText('SQL linting and formatting. Lint 10,000 files in under a second.');
     await expect(sqlclean.getByRole('link', { name: 'under a second.', exact: true })).toHaveAttribute('href', 'https://sqlclean.io/docs/benchmarks/');
     await expect(page.getByText('Published benchmark:', { exact: false })).toHaveCount(0);
-    for (const name of names.slice(4)) {
-      const card = page.getByRole('article', { name, exact: true });
-      await expect(card.getByText('Coming soon', { exact: true })).toBeVisible();
-      await expect(card.getByRole('link')).toHaveCount(0);
+    for (const [section, products] of [['Build your data.', ['SQLBuild', 'SQLTide', 'SQLLoad']], ['Keep it sound.', ['SQLClean', 'Fensu', 'SQLQuack']]]) {
+      const row = page.getByRole('region', { name: section, exact: true });
+      await expect(row.getByRole('heading', { level: 3 })).toHaveText(products);
     }
+    await expect(page.getByRole('article', { name: 'SQLLoad', exact: true }).locator('p')).toHaveText('Load data into your warehouse. See how before anything changes.');
+    await expect(page.getByRole('article', { name: 'SQLQuack', exact: true }).locator('p')).toHaveText('Run Snowflake SQL locally. Verified results, or a clear no.');
+    await expect(page.getByText(/coming soon|on the horizon/i)).toHaveCount(0);
     await expect(page.getByRole('article', { name: 'Fensu', exact: true })).not.toContainText(/pre-release|coming soon/i);
     for (const width of [320, 390, 768, 1536]) {
       await page.setViewportSize({ width, height: 900 });

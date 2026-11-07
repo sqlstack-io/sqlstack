@@ -23,10 +23,6 @@
   --background: #ffffff;
   --panel: #ffffff;
   --focus: #1768ba;
-  --gold-ink: #765600;
-  --gold-bg: #fff3cb;
-  --pink-ink: #a52138;
-  --pink-bg: #ffe5e9;
   --gutter: clamp(20px, 4.35vw, 68px);
   font-family: Inter, sans-serif;
   color: var(--ink);
@@ -43,10 +39,6 @@
   --background: #0d0f12;
   --panel: #171a1f;
   --focus: #75b5ff;
-  --gold-ink: #ffe07a;
-  --gold-bg: #352b12;
-  --pink-ink: #ffacba;
-  --pink-bg: #3e2028;
 }
 
 * { box-sizing: border-box; }
@@ -107,11 +99,6 @@ h3 { margin: 0; font-family: "Space Grotesk", sans-serif; font-size: 24.94308px;
 .fensu { --accent: #ff6b00; }
 .sqlquack { --accent: #ffe000; }
 .sqlload { --accent: #ff5268; }
-.upcoming .product { min-height: 128px; align-items: center; padding-block: 22px; }
-.upcoming .product-icon { margin-top: 0; }
-.upcoming-name { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
-.badge { display: inline-block; padding: 6px 10px; border-radius: 4px; font-size: 12px; line-height: 16px; color: var(--gold-ink); background: var(--gold-bg); white-space: nowrap; }
-.sqlload .badge { color: var(--pink-ink); background: var(--pink-bg); }
 .site-footer { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0 24px; border-top: 1px solid var(--line); font-size: 12px; line-height: 1.5; }
 .site-footer span:last-child { color: var(--muted); }
 #tools { scroll-margin-top: 20px; }
@@ -139,8 +126,5 @@ h3 { margin: 0; font-family: "Space Grotesk", sans-serif; font-size: 24.94308px;
   .category > p:last-child { margin-top: 8px; }
   .product { gap: 20px; padding: 22px 18px 18px; }
   .product-links a { min-height: 32px; }
-  .upcoming .product { min-height: 116px; }
-  .upcoming-name { gap: 8px; }
-  .badge { padding-inline: 8px; }
   .site-footer { flex-wrap: wrap; }
 }
