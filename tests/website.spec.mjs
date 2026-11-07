@@ -77,7 +77,7 @@ test('approved products, sharing assets and responsive navigation work in both t
       await expect(row.getByRole('heading', { level: 3 })).toHaveText(products);
     }
     await expect(page.getByRole('article', { name: 'SQLLoad', exact: true }).locator('p')).toHaveText('Load data into your warehouse. See how before anything changes.');
-    await expect(page.getByRole('article', { name: 'SQLQuack', exact: true }).locator('p')).toHaveText('Run Snowflake SQL locally. Verified results, or a clear no.');
+    await expect(page.getByRole('article', { name: 'SQLQuack', exact: true }).locator('p')).toHaveText('Run warehouse SQL locally. Verified results, or a clear no.');
     await expect(page.getByText(/coming soon|on the horizon/i)).toHaveCount(0);
     await expect(page.getByRole('article', { name: 'Fensu', exact: true })).not.toContainText(/pre-release|coming soon/i);
     for (const width of [320, 390, 768, 1536]) {
