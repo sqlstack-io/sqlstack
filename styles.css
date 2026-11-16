@@ -85,6 +85,9 @@ h2 { margin: 0; font-size: 36px; font-weight: 750; line-height: 1.15; letter-spa
 .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .product { --accent: #1680ff; display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 40px; padding: 20px 28px 14px; border: 1px solid var(--line); border-top: 2px solid var(--accent); background: var(--panel); }
 .product-icon { margin-top: 6px; }
+/* Wide marks get a wider box, centred on the same column, so they read as large as the squarer ones. */
+.sqlload .product-icon { width: 60px; margin-inline: -4px; }
+.fensu .product-icon { width: 64px; margin-inline: -6px; }
 .product-content { min-width: 0; display: flex; flex-direction: column; }
 h3 { margin: 0; font-family: "Space Grotesk", sans-serif; font-size: 24.94308px; font-weight: 700; line-height: 1.2; letter-spacing: 0; }
 .fensu h3 { font-size: 25.5px; }
