@@ -50,10 +50,9 @@ test('approved products, sharing assets and responsive navigation work in both t
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Your data stack. Engineered for safer change.');
     await expect(page.locator('.hero .lede')).toHaveText('Rust-backed SQL and Python tools for data engineers.');
     await expect(page.getByRole('heading', { level: 3 })).toHaveText(names);
-    const wordmark = page.locator('.brand span');
-    for (const [property, value] of [['font-family', '"Space Grotesk", sans-serif'], ['font-weight', '700'], ['letter-spacing', 'normal'], ['font-size', '22px']]) {
-      await expect(wordmark).toHaveCSS(property, value);
-    }
+    const logo = page.getByRole('link', { name: 'SQLStack home', exact: true }).locator('img:visible');
+    await expect(logo).toHaveAttribute('src', `assets/icons/sqlstack-lockup${theme === 'dark' ? '-dark' : ''}.png`);
+    await expect(logo).toHaveAttribute('alt', 'SQLStack');
     await expect(page.getByRole('link', { name: 'SQLStack on GitHub', exact: true })).toHaveAttribute('href', 'https://github.com/sqlstack-io');
     for (const [name, website] of [['SQLBuild', 'https://sqlbuild.com'], ['SQLTide', 'https://sqltide.io/'], ['SQLClean', 'https://sqlclean.io'], ['Fensu', 'https://fensu.io/'], ['SQLLoad', 'https://sqlload.io'], ['SQLQuack', 'https://sqlquack.io']]) {
       const card = page.getByRole('article', { name, exact: true });
@@ -103,6 +102,8 @@ test('approved products, sharing assets and responsive navigation work in both t
   }
   for (const [path, width, height] of [
     ['/assets/og-sqlstack-dark.png', 1200, 630],
+    ['/assets/icons/sqlstack-lockup.png', 432, 102],
+    ['/assets/icons/sqlstack-lockup-dark.png', 432, 102],
     ['/assets/favicon-16.png', 16, 16],
     ['/assets/favicon-32.png', 32, 32],
     ['/assets/favicon-dark-32.png', 32, 32],
