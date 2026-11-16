@@ -14,6 +14,8 @@ Open `http://localhost:4173`. No build step or package installation is required 
 
 The page uses self-hosted Inter and Space Grotesk fonts. Their licenses are included in
 `assets/fonts/`. Product icons are optimized PNG derivatives of the original brand artwork.
+The header uses the SQLStack logo lockup (mark and wordmark) as transparent light and dark PNGs in
+`assets/icons/sqlstack-lockup.png` and `assets/icons/sqlstack-lockup-dark.png`.
 
 The theme defaults to the system preference. The accessible header toggle saves an explicit
 light/dark preference in the browser. Without JavaScript, the page remains usable in light mode.
